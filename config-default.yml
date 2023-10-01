@@ -1,0 +1,15 @@
+server:
+  host: 127.0.0.1
+  port: 8000
+#feeds:
+#  - name: Feed name
+#    tokens:
+#      # Private token shows all information from calendars
+#      private: at-least-40-random-chars-of-token
+#      # Public token only shows busy hours
+#      public: at-least-40-random-chars-of-token
+#    calendars:
+#      # Work
+#      - url: https://ical-url-of-work-calendar
+#      # Personal
+#      - url: https://ical-url-of-personal-calendar

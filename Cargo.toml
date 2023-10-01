@@ -1,0 +1,39 @@
+[package]
+name = "icaliada"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.70"
+askama = { version = "0.12.1", features = ["with-axum"] }
+askama_axum = "0.4.0"
+axum = { version = "0.7.4", features = ["tracing"] }
+chrono = "0.4.31"
+chrono-tz = "0.8.3"
+config = "0.14.0"
+dotenv = "0.15.0"
+futures = "0.3.28"
+hyper = "1.1.0"
+#todo switch to icalendar?
+ical = "0.10.0"
+moka = { version = "0.12.0", features = ["future"] }
+reqwest = { version = "0.11.18", default-features = false, features = [
+    "native-tls-vendored",
+] }
+rrule = "0.11.0"
+secrecy = { version = "0.8.0", features = ["serde"] }
+serde = { version = "1.0.160", features = ["derive"] }
+serde_yaml = "0.9.21"
+serde_json = "1.0.96"
+thiserror = "1.0.40"
+tokio = { version = "1.27.0", features = [
+    "io-util",
+    "rt-multi-thread",
+    "macros",
+] }
+tower = "0.4.13"
+tracing = { version = "0.1.30", default-features = false, features = ["log"] }
+tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }
+
+[dev-dependencies]
+rstest = "0.18.2"

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js'></script>
+    <title>{{ title }}</title>
+<body>
+<div id="calendar-container">
+    <div id="calendar"></div>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const calendarEl = document.getElementById('calendar');
+        const params = Object.fromEntries(new URLSearchParams(location.search));
+
+        const calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'timeGridWeek',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'timeGridWeek,dayGridMonth'
+            },
+            firstDay: 1,
+            height: 'auto',
+            slotMinTime: '06:00:00',
+            slotMaxTime: '20:00:00',
+            slotLabelFormat: {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            },
+            eventTimeFormat: {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            },
+            eventSources: [
+                {% for token in tokens %}
+                {% let i = loop.index0 % colors.len() %}
+                {
+                    url: '/events',
+                    extraParams: {
+                        token: '{{ token }}'
+                    },
+                    color: '{{ colors[i] }}'
+                }
+                {% if !loop.last %}
+                ,
+                {% endif %}
+                {% endfor %}
+            ]
+        });
+
+        calendar.render();
+    });
+</script>
+</body>
+</html>
